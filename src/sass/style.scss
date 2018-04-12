@@ -1,0 +1,100 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  background: linear-gradient(322deg, #0b674f, #ffffff, #adc8c1);
+  background-size: 600% 600%;
+
+  -webkit-animation: gradient 19s ease infinite;
+  -moz-animation: gradient 19s ease infinite;
+  animation: gradient 19s ease infinite;
+  font-family: "Dosis", sans-serif;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 4% 0%;
+  }
+  50% {
+    background-position: 97% 100%;
+  }
+  100% {
+    background-position: 4% 0%;
+  }
+}
+@-moz-keyframes gradient {
+  0% {
+    background-position: 4% 0%;
+  }
+  50% {
+    background-position: 97% 100%;
+  }
+  100% {
+    background-position: 4% 0%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 4% 0%;
+  }
+  50% {
+    background-position: 97% 100%;
+  }
+  100% {
+    background-position: 4% 0%;
+  }
+}
+
+.main-heading {
+  font-family: "Sacramento", cursive;
+  font-size: 6rem;
+  margin: 1rem;
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+  color: white;
+  text-shadow: 0px 0px 10px black;
+}
+
+.parent-component {
+  padding: 1rem;
+
+  .sub-heading {
+    font-family: "Sacramento", cursive;
+    font-size: 3rem;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+  }
+
+  button.btn {
+    font-family: "Dosis", sans-serif;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+  }
+}
+
+.product-wrapper {
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0px 0px 5px black;
+
+  .product-item {
+    .product-name {
+      padding: 1.5rem 0 1rem 0;
+      text-decoration: underline;
+      letter-spacing: 2px;
+    }
+  }
+}
+
+.empty-cart {
+  padding-top: 1rem;
+}
+
+.amount {
+  .btn {
+    margin: 0 1rem;
+  }
+}
