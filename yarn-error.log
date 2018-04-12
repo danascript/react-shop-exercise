@@ -1,5 +1,5 @@
 Arguments: 
-  /home/daniela/.nvm/versions/node/v8.9.4/bin/node /home/daniela/.nvm/versions/node/v8.9.4/bin/yarn start
+  /home/daniela/.nvm/versions/node/v8.9.4/bin/node /home/daniela/.nvm/versions/node/v8.9.4/bin/yarn build
 
 PATH: 
   /home/daniela/.nvm/versions/node/v8.9.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -15,9 +15,10 @@ Platform:
 
 npm manifest: 
   {
-    "name": "todo-react",
+    "name": "react-shop",
     "version": "0.0.1",
     "private": true,
+    "homepage": "https://misslild.github.io/react-shop-exercise/",
     "scripts": {
       "build-css": "node-sass-chokidar src/sass/ -o public/css/",
       "watch-css": "npm run build-css && node-sass-chokidar src/sass/ -o public/css/ --watch --recursive",
@@ -25,11 +26,14 @@ npm manifest:
       "start": "npm-run-all -p watch-css start-js",
       "build-js": "react-scripts build",
       "build": "npm-run-all build-css build-js",
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build",
       "eject": "react-scripts eject"
     },
     "dependencies": {
       "bootstrap": "^4.0.0",
       "font-awesome": "^4.7.0",
+      "gh-pages": "^1.1.0",
       "node-sass-chokidar": "^1.2.2",
       "npm-run-all": "^4.1.2",
       "react": "^16.3.1",
@@ -7680,9 +7684,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 127
   Command: sh
-  Arguments: -c npm-run-all -p watch-css start-js
+  Arguments: -c npm-run-all build-css build-js
   Directory: /home/daniela/Development/react-exercise
   Output:
   
