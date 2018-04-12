@@ -4,14 +4,13 @@
   "private": true,
   "homepage": "https://misslild.github.io/react-shop-exercise/",
   "scripts": {
-    "build-css": "node-sass-chokidar src/sass/ -o public/css/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/sass/ -o public/css/ --watch --recursive",
+    "build-css": "node-sass-chokidar src/sass/ -o src/css/",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/sass/ -o src/css/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "dependencies": {
