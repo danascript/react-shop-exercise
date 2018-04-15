@@ -6299,11 +6299,25 @@ body {
   100% {
     background-position: 4% 0%; } }
 
+.navbar-light > .navbar-brand {
+  font-family: "Sacramento", cursive;
+  font-size: 2rem;
+  color: #3c9797; }
+
+.dropdown-menu {
+  min-width: 6.5rem;
+  background-color: #f8f9fa;
+  border: none;
+  letter-spacing: 1px; }
+  .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(174, 220, 220, 0.77); }
+
 .main-heading {
   font-family: "Sacramento", cursive;
   font-size: 6rem;
   margin: 1rem;
-  padding: 2rem 0 1rem 0;
+  margin-top: 60px;
+  padding: 3rem 0 1rem 0;
   text-align: center;
   color: white;
   text-shadow: 0px 0px 10px black; }
@@ -6332,9 +6346,14 @@ body {
     padding: 1.5rem 0 1rem 0;
     text-decoration: underline;
     letter-spacing: 2px; }
+  .product-wrapper .product-item .product-description {
+    letter-spacing: 1px; }
 
 .empty-cart {
   padding-top: 1rem; }
 
-.amount .btn {
-  margin: 0 1rem; }
+.amount .btn-left {
+  margin: 0 1rem 0 0; }
+
+.amount .btn-right {
+  margin: 0 0 0 1rem; }

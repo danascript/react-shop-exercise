@@ -6,7 +6,7 @@ class CartItem extends Component {
 
     return (
       <div className="col-12 product-item">
-        {this.props.message ? (
+        {this.props.message || !this.props.data.productDescription ? (
           <p className="product-description text-justify empty-cart">
             {this.props.message}
           </p>
@@ -14,35 +14,29 @@ class CartItem extends Component {
           <Fragment>
             <h4 className="product-name">{productInCart.productName}</h4>
             <p className="product-description text-justify">
-              {productInCart.productDescription}
+              {productInCart.productDescription}...
             </p>
             <p className="amount">
               <button
-                className="btn btn-outline-light"
+                className="btn btn-outline-light btn-left"
                 onClick={e => this.props.decreaseItems(e, productInCart.uuid)}
               >
                 -
               </button>
               Amount: &nbsp; {productInCart.amount}
               <button
-                className="btn btn-outline-light"
+                className="btn btn-outline-light btn-right"
                 onClick={e => this.props.increaseItems(e, productInCart.uuid)}
               >
                 +
               </button>
+              <button
+                className="btn btn-outline-light float-right"
+                onClick={e => this.props.removeFromCart(e, productInCart.uuid)}
+              >
+                <i className="fa fa-times" /> &nbsp; REMOVE
+              </button>
             </p>
-            <div className="container">
-              <div className="row d-flex">
-                <button
-                  className="btn btn-outline-light ml-auto"
-                  onClick={e =>
-                    this.props.removeFromCart(e, productInCart.uuid)
-                  }
-                >
-                  <i className="fa fa-times" /> &nbsp; REMOVE
-                </button>
-              </div>
-            </div>
           </Fragment>
         )}
       </div>

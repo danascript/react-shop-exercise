@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Products from "./Products";
 import Cart from "./Cart";
+import Navbar from "./Navbar";
 
 class App extends Component {
   // default state
@@ -32,15 +33,34 @@ class App extends Component {
         amount: 0
       }
     },
-    cartItems: {}
+    cartItems: {},
+    user: {
+      isLoggedIn: false
+    }
   };
 
   addToCart = (e, uuid) => {
     e.preventDefault();
-    const added = this.state.productItems[uuid];
+
+    // assigning a new value, not referencing, since then the description cuts the original too.
+    if (!this.state.cartItems[uuid]) {
+      this.added = Object.assign({}, this.state.productItems[uuid]);
+    }
+
+    // want to have a shorter description for the cart items
+    const description = this.state.productItems[uuid].productDescription;
+    const shortDescription = description
+      .split(" ")
+      .splice(0, 18)
+      .join(" ");
+
     this.setState(state => {
-      state.cartItems[uuid] = added;
+      if (!state.cartItems[uuid]) {
+        state.cartItems[uuid] = this.added;
+      }
       state.cartItems[uuid].amount++;
+      state.cartItems[uuid].productDescription = shortDescription;
+
       return state;
     });
   };
@@ -56,6 +76,7 @@ class App extends Component {
   decreaseItems = (e, uuid) => {
     e.preventDefault();
 
+    // blocking from having amount 0 in the cart
     if (this.state.cartItems[uuid].amount === 1) {
       return;
     }
@@ -69,6 +90,7 @@ class App extends Component {
   removeFromCart = (e, uuid) => {
     e.preventDefault();
     this.setState(state => {
+      // resetting the amount value, so when the user adds the item again, the amount will start from 1
       state.cartItems[uuid].amount = 0;
       delete state.cartItems[uuid];
       return state;
@@ -77,30 +99,33 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h2 className="main-heading">Shop</h2>
-        <div className="container d-flex ">
-          <div className="row justify-content-around">
-            <div className="col-5 parent-component">
-              <h3 className="sub-heading">Products</h3>
+      <Fragment>
+        <Navbar userLoggedIn={this.state.user.isLoggedIn} />
+        <div className="container">
+          <h2 className="main-heading">Shoppie</h2>
+          <div className="container d-flex ">
+            <div className="row justify-content-around">
+              <div className="col-5 parent-component">
+                <h3 className="sub-heading">Products</h3>
 
-              <Products
-                productItems={this.state.productItems}
-                addToCart={this.addToCart}
-              />
-            </div>
-            <div className="col-5 parent-component">
-              <h3 className="sub-heading">Cart</h3>
-              <Cart
-                cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart}
-                increaseItems={this.increaseItems}
-                decreaseItems={this.decreaseItems}
-              />
+                <Products
+                  productItems={this.state.productItems}
+                  addToCart={this.addToCart}
+                />
+              </div>
+              <div className="col-5 parent-component">
+                <h3 className="sub-heading">Cart</h3>
+                <Cart
+                  cartItems={this.state.cartItems}
+                  removeFromCart={this.removeFromCart}
+                  increaseItems={this.increaseItems}
+                  decreaseItems={this.decreaseItems}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
